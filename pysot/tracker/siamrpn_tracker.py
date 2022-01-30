@@ -147,16 +147,16 @@ class SiamRPNTracker(SiameseTracker):
         cx, cy, width, height = self._bbox_clip(cx, cy, width,
                                                 height, img.shape[:2])
 
-        # udpate state
-        self.center_pos = np.array([cx, cy])
-        self.size = np.array([width, height])
-
+        center_pos = np.array([cx, cy])
+        size = np.array([width, height])
         bbox = [cx - width / 2,
                 cy - height / 2,
                 width,
                 height]
         best_score = score[best_idx]
         return {
+                'center_pos': center_pos,
+                'size': size,
                 'bbox': bbox,
                 'best_score': best_score
                }

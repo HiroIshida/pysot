@@ -33,6 +33,10 @@ class BaseTracker(object):
         """
         raise NotImplementedError
 
+    def update_state(self, center_pos, size):
+        self.center_pos = center_pos
+        self.size = size
+
 
 class SiameseTracker(BaseTracker):
     def get_subwindow(self, im, pos, model_sz, original_sz, avg_chans):

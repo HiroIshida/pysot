@@ -123,8 +123,8 @@ class SiamMaskTracker(SiamRPNTracker):
                                                 width, height, img.shape[:2])
 
         # udpate state
-        self.center_pos = np.array([cx, cy])
-        self.size = np.array([width, height])
+        center_pos = np.array([cx, cy])
+        size = np.array([width, height])
 
         bbox = [cx - width / 2,
                 cy - height / 2,
@@ -155,6 +155,8 @@ class SiamMaskTracker(SiamRPNTracker):
         polygon = self._mask_post_processing(mask_in_img)
         polygon = polygon.flatten().tolist()
         return {
+                'center_pos': center_pos,
+                'size': size,
                 'bbox': bbox,
                 'best_score': best_score,
                 'mask': mask_in_img,
